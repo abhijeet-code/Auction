@@ -1,0 +1,35 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <h2>Your Cart</h2>
+
+</div>
+<div class="row" id="listings">
+    {% for item in items %}
+    {% for i in item %}
+    <div class="card-group" style="max-width: 350px;" id="card-listings">
+        <div class="card">
+          <div class="card mb-3">
+            <img src="{{i.link}}" class="card-img-top" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{i.title}}</h5>
+              <p class="card-text">{{i.description}}</p>
+              <p class="card-text">${{i.price}}</p>
+              <a href="{% url 'listingpage' i.id %}"><button class="btn btn-outline-success">Visit Now!</button></a>
+              <p class="card-text"><small class="text-muted">{{i.time}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% empty %}
+  <center>
+          <h3>No Product found in your Cart...</h3>
+            <img src="../../static/auctions/emoji.png" width="172" height="172" class="d-inline-block align-top" >
+  </center>
+      {% endfor %}
+</div>
+{% endblock %}

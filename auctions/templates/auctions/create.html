@@ -1,0 +1,55 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+<div class="container">
+    <h2>Sell your Product</h2>
+
+</div>
+<div class="container">
+    <form action="{% url 'submit' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Title</label>
+          <input class="form-control" id="exampleFormControlInput1" placeholder="Title of your product..." name="title" required>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Description</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Describe the condition of your product..." name="description" required></textarea>
+        </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Category</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="category" required>
+              <option>Mobile-phone</option>
+              <option>Sports</option>
+              <option>Fashion</option>
+              <option>Tools</option>
+              <option>Toys</option>
+              <option>Electronics</option>
+              <option>Home accessories</option>
+              <option>Books</option>
+              <option>Other</option>
+            </select>
+          </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Discounted Price</label>
+            <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Enter a desirable Price" name="price" required>
+          </div>
+
+          <div class="form-group">
+              <label for="exampleFormControlInput1">Contact</label>
+              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Enter your contact No." name="contact" required>
+            </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Image link (optional)</label>
+            <input  class="form-control" id="exampleFormControlInput1" placeholder="https://xyz.jpg..." name="link">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Website link (optional)</label>
+            <a><input  class="form-control" id="exampleFormControlInput1" placeholder="https://www.example.com" name="slink"></a>
+          </div>
+        <button class="btn btn-outline-info" type="submit">Submit</button>
+
+      </form>
+</div>
+{% endblock %}

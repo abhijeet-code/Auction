@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div >
+
+            <!-- Image and text -->
+             <nav class="navbar navbar-expand-lg" navbar-light style="background-color: #e3f2fd;">
+               <h3>Best Deals!!</h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <a class="navbar-brand" href="#">
+                <img src="{% static 'auctions/apple.png'%}" width="30" height="30" class="d-inline-block align-top" alt="">
+                           ABHI-Commerce
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'index' %}">Products <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{% url 'categories' %}">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'watchlistpage' user.username %}">Cart <span class="badge badge-success">{{wcount}}</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create' %}">Sell a Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mywinnings' %}">Your Purchases</a>
+                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                        <div style="position: fixed; top: 10px; right: 10px; background-color: rgba(0, 0, 0, 0.8); color: white; padding: 8px 15px; border-radius: 5px; font-size: 14px; z-index: 1000;">
+                            {% if user.is_authenticated %}
+                                Signed in as <strong>{{ user.username }}</strong>.
+                            {% else %}
+                                Not signed in.
+                            {% endif %}
+                        </div>
+                           
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+              </div>
+             </nav>
+
+
+        </div>
+        <hr>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
